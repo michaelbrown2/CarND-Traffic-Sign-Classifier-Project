@@ -82,10 +82,10 @@ My final model consisted of the following layers:
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x3 RGB image   
-| Convolution 3x3   | 1x1 stride, same padding, outputs 28x28x6 
+| Convolution 5x5   | 1x1 stride, same padding, outputs 28x28x6 
 | RELU					|						
 | Max pooling	      	| 2x2 stride,  outputs 14x14x6
-| Convolution 3x3	| 1x1 stride, same padding, outputs 10x10x16
+| Convolution 5x5	| 1x1 stride, same padding, outputs 10x10x16
 | RELU					|
 | Max Pooling			|2x2 stride, outputs 5x5x16
 | Flatten				| Input 5x5x16 Output 400
@@ -114,11 +114,13 @@ I also included a drop out of .6 in the training loop and 1.0 in the validation.
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
+
 * training set accuracy of 0.995
 * validation set accuracy of 0.963
 * test set accuracy of 0.931
+* web set accuracy of 0.80
 
-I went through MANY iterations of the process to narrow down the best settings I could identify for the neural network.  The neural network portion made sense to me, however my lack of experience with Python made the process quite long.  I attempted implementing avg_pooling instead of max_pooling and it did not make any noticeable change to my accuracy.  The biggest thing that helped with my accuracy was implementing Dropout in the network.  My original pipeline was overfitting. 
+I went through MANY iterations of the process to narrow down the best settings I could identify for the neural network.  The neural network portion made sense to me, however my lack of experience with Python made the process quite long.  I attempted implementing avgpooling instead of maxpooling and it did not make any noticeable change to my accuracy.  The biggest thing that helped with my accuracy was implementing Dropout in the network.  My original pipeline was overfitting. As far as the other variables, I went through many trainings while changing each one bit by bit until I maximized accuracy (as far as I could tell.) I did base my main pipeline off of the course pipeline that was referenced in the Notebook.  I think LeNet was a good match because of it's flexibility and due to my familiarity with it. 
  
 
 ###Test a Model on New Images
@@ -151,11 +153,11 @@ The model was able to correctly guess 4 of the 5 traffic signs, which gives an a
 
 | Image | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------:|:---------------------------------------------:| 
-| 14| [99.72 11.14 -0.07 -3.32 -7.38] | [14 17  2 38  4]   									| 
-| 24 | [107.10 48.12 38.51 32.44 23.59]| [24 26 29 21 28]										 |
-| 35 | [125.04 33.51 11.22 8.01 3.55] | [35  3  9 36 28]											|
-| 40 | [90.77 43.73 18.24 -5.16 -9.13] | [40 12  7 11  1]				 				|
-| 7 | [14.19 12.97 9.29 8.62 2.43] | [13 10 33  9 14]     							|
+| 14| [1.00 0.00 0.00 0.00 0.00] | [14 38 17 34  5]   									| 
+| 24 | [1.00 0.00 0.00 0.00 0.00] | [24 26 18 27 28]										 |
+| 35 | [1.00 0.00 0.00 0.00 0.00] | [35  0  1  2  3]											|
+| 40 | [1.00 0.00 0.00 0.00 0.00] | [40 12 10  7 11]				 				|
+| 7 | [1.00 0.00 0.00 0.00 0.00] | [14 10 34 38  5]     							|
 
 
 Only image 7 was INCORRECTLY classified.
